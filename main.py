@@ -1,27 +1,20 @@
 import os
 import google.generativeai as genai 
-#from main import streamlit_app
-
-#from logic import vision_chat
 import streamlit as st
 from PIL import Image
+import mimetypes
 import io
 
 
 def vision_chat(media,query) :
     genai.configure(api_key='AIzaSyDysRriCh_xnloDODlfwpKn5ABORNWuzC8')
-
-    #media = input('enter the image path') #'cricket.jpeg'
     file = genai.upload_file(media)
-    #query = input('enter the query') # 'describe the image'
     model = genai.GenerativeModel('gemini-1.5-flash')
     result = model.generate_content(
         [file,'\n\n',query]
     )
-    #print(f'{result.text}')
     result = result.text
     return result
-
 
 def streamlit_app() :
     st.title('Vision Analysis')
@@ -34,15 +27,15 @@ def streamlit_app() :
             image = Image.open(io.BytesIO(media.read()))
             st.image(image,caption='uploaded image',use_column_width=True)
             print(f'mimie type is {mime_type}')
+        with open('temp_image.jpeg','wb') as f :
+            f.write(media.getbuffer())
     else :
         st.error('please upload the valid image file')
-    
-    img = st.text_input('Enter the image path')
     query = st.text_input('enter the query')
     submit = st.button('Submit')
     if submit :
         try :
-            result = vision_chat(img,query)
+            result = vision_chat('temp_image.jpeg',query)
             st.code(result,language = 'markdown')
         except Exception as e:
             st.error(f'An error occured {e}')
