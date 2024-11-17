@@ -29,8 +29,8 @@ def streamlit_app() :
             print(f'mimie type is {mime_type}')
         with open('temp_image.jpeg','wb') as f :
             f.write(media.getbuffer())
-    else :
-        st.error('please upload the valid image file')
+    # else :
+    #     st.error('please upload the valid image file')
     query = st.text_input('enter the query')
     submit = st.button('Submit')
     if submit :
