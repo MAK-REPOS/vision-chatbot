@@ -17,7 +17,7 @@ def vision_chat(media,query) :
     return result
 
 def streamlit_app() :
-    st.title('Vision Analysis')
+    st.title('Vision AI Text Generator')
     
     media = st.file_uploader('choose an image...',type=['jpg','png','jpeg','JPEG'])
     if media is not None :
