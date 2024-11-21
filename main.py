@@ -1,5 +1,6 @@
 import os
 import google.generativeai as genai 
+from dotenv import load_dotenv
 import streamlit as st
 from PIL import Image
 import mimetypes
@@ -7,7 +8,9 @@ import io
 
 
 def vision_chat(media,query) :
-    genai.configure(api_key='AIzaSyDysRriCh_xnloDODlfwpKn5ABORNWuzC8')
+    load_dotenv()
+    key = os.getenv('api__key')
+    genai.configure(api_key = key)
     file = genai.upload_file(media)
     model = genai.GenerativeModel('gemini-1.5-flash')
     result = model.generate_content(
