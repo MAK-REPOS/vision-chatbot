@@ -29,7 +29,7 @@ def streamlit_app() :
         print(f'mimie type is {mime_type}')
         if mime_type.startswith('image/') :
             image = Image.open(io.BytesIO(media.read()))
-            st.image(image,caption='uploaded image',use_column_width=True)
+            st.image(image,caption='uploaded image',use_container_width=True)
             print(f'mimie type is {mime_type}')
         with open('temp_image.jpeg','wb') as f :
             f.write(media.getbuffer())

@@ -79,7 +79,7 @@ def streamlit_app():
         print(f'Mime type is {mime_type}')
         if mime_type.startswith('image/'):
             image = Image.open(io.BytesIO(media.read()))
-            st.image(image, caption='Uploaded image', use_column_width=True)
+            st.image(image, caption='Uploaded image', use_container_width=True)
             print(f'Mime type is {mime_type}')
     else:
         st.error('Please upload a valid image file')
