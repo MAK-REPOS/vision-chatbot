@@ -10,7 +10,8 @@ import io
 def vision_chat(media,query) :
     load_dotenv()
     key = os.getenv('api__key')
-    genai.configure(api_key = key)
+    #genai.configure(api_key = key)
+    genai.configure(api_key = 'AIzaSyBxZF_QX9bOAiT4wOZZ0aCsPPg6hbeTyMM')
     file = genai.upload_file(media)
     model = genai.GenerativeModel('gemini-1.5-flash')
     result = model.generate_content(
